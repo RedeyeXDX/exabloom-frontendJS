@@ -22,10 +22,12 @@ import BranchLabelNode from "./BranchLabelNode";
 import IfElseNodeModal from "./IfElseNodeModal";
 import { addIfElseStructure } from "./addIfElseStructure";
 
+// Custom edge type for displaying the add (+) button
 const edgeTypes = {
   add: AddEdge,
 };
 
+// Custom node types used in the workflow
 const nodeTypes = {
   start: StartNode,
   end: EndNode,
@@ -34,6 +36,7 @@ const nodeTypes = {
   branchlabel: BranchLabelNode,
 };
 
+// Initial flow containing just Start and End
 const initialNodes = [
   {
     id: "1",
@@ -50,6 +53,7 @@ const initialNodes = [
 ];
 
 export default function WorkflowBuilder() {
+  // ReactFlow hooks for managing node/edge state
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([
     {
@@ -68,12 +72,14 @@ export default function WorkflowBuilder() {
     },
   ]);
 
+  // UI and interaction states
   const [edgeToSplit, setEdgeToSplit] = useState(null);
   const [selectorPosition, setSelectorPosition] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
   const [showIfElseModal, setShowIfElseModal] = useState(false);
   const [stagedEdge, setStagedEdge] = useState(null);
 
+  // Adds a new edge via manual connection
   const onConnect = useCallback(
     (params) => {
       const id = `e-${params.source}-${params.target}`;
@@ -97,15 +103,18 @@ export default function WorkflowBuilder() {
     [setEdges, setSelectorPosition, setEdgeToSplit]
   );
 
+  // Opens the modal for editing an existing If/Else node
   const openIfElseEditModal = (nodeId) => {
     const node = nodes.find((n) => n.id === nodeId);
     if (node) setSelectedNode(node);
   };
 
+  // Handles selection between inserting Action or If/Else node
   const handleNodeTypeSelection = (type) => {
     if (!edgeToSplit) return;
 
     if (type === "action") {
+      // Insert action node between existing edge
       addNodeBetweenEdgeHelper(
         edgeToSplit.source,
         edgeToSplit.target,
@@ -119,6 +128,7 @@ export default function WorkflowBuilder() {
       setEdgeToSplit(null);
       setSelectorPosition(null);
     } else if (type === "ifelse") {
+      // Open If/Else modal for branch configuration
       setShowIfElseModal(true);
       setStagedEdge(edgeToSplit);
       setSelectorPosition(null);
