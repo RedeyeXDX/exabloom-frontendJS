@@ -1,13 +1,86 @@
-# React + Vite
+# React Flow Logic Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A visual drag-and-drop logic builder built with React Flow, allowing users to construct complex workflows with Start, Action, If/Else, and End nodes. Each node can be connected dynamically and edited in-place, with modal-driven UI and custom edges.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Custom Nodes: Start, Action, End, If/Else, and BranchLabel
 
-## Expanding the ESLint configuration
+- Add Nodes Between Edges using a custom edge (+) button
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# exabloom-frontendJS
+- If/Else Structure with dynamic branching logic
+
+- Modal Editing for both Action and If/Else nodes
+
+- Custom Edge Logic with animated connectors
+
+- Interactive UI: Drag, connect, edit, delete
+
+- Built with Tailwind CSS for easy styling
+
+## Preview
+
+### Start Page
+
+![Start Page](src/img//start-page.png)
+
+### Action Node
+
+![Action Node](src/img/ActionNode.png)
+
+### If/Else Node
+
+![If/Else](src/img/ifElse.png)
+
+### Branch
+
+![Branch](src/img/branch.png)
+
+### Rename
+
+![Rename](src/img/Rename.png)
+
+### Final Look
+
+![Final look](src/img/finalLook.png)
+
+## Tech Stack
+
+- React + Vite
+
+- React Flow (via @xyflow/react)
+
+- Tailwind CSS for styling
+
+- Custom modals and edge component
+
+## Setup
+
+# Clone the repo
+
+git clone https://github.com/your-username/react-flow-logic-builder.git
+cd react-flow-logic-builder
+
+# Install dependencies
+
+npm install
+
+# Start the dev server
+
+npm run dev
+
+## Usage
+
+Click the (+) button on an edge to insert a node between two steps.
+
+Choose Action or If/Else.
+
+If selecting If/Else:
+
+Configure branches in the modal.
+
+Each branch spawns a branchlabel node.
+
+Connect logic to branches and continue building.
+
+Click any Action or If/Else node to edit/delete.
